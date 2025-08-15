@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Enhancement</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .image-container img {
+            max-width: 48%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .image-label {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Image Enhancement</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="file" id="fileInput" name="file" class="form-control-file">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Enhance</button>
+                </form>
+            </div>
+        </div>
+        <div id="result" class="image-container"></div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var form = event.target;
+            var formData = new FormData(form);
+
+            fetch('/enhance', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    var resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = '';
+                    
+                    // Original Image
+                    var originalDiv = document.createElement('div');
+                    originalDiv.classList.add('text-center', 'col-md-6');
+                    var originalImage = document.createElement('img');
+                    originalImage.src = URL.createObjectURL(form['file'].files[0]);
+                    originalImage.classList.add('img-fluid');
+                    originalDiv.appendChild(originalImage);
+                    var originalLabel = document.createElement('div');
+                    originalLabel.classList.add('image-label');
+                    originalLabel.textContent = 'Original Image';
+                    originalDiv.appendChild(originalLabel);
+                    resultDiv.appendChild(originalDiv);
+
+                    // Enhanced Image
+                    var enhancedDiv = document.createElement('div');
+                    enhancedDiv.classList.add('text-center', 'col-md-6');
+                    var enhancedImage = document.createElement('img');
+                    enhancedImage.src = 'data:image/png;base64,' + data.enhanced_image;
+                    enhancedImage.classList.add('img-fluid');
+                    enhancedDiv.appendChild(enhancedImage);
+                    var enhancedLabel = document.createElement('div');
+                    enhancedLabel.classList.add('image-label');
+                    enhancedLabel.textContent = 'Enhanced Image';
+                    enhancedDiv.appendChild(enhancedLabel);
+                    resultDiv.appendChild(enhancedDiv);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

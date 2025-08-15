@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif, monospace;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: linear-gradient(
+                to bottom,
+                #4d0a41,
+                #881e76,
+                #881c76,
+                #4b0b41
+            );
+        }
+        .container1 {
+            background: linear-gradient(
+                to bottom,
+                #12021b,
+                #240536,
+                #4d2148,
+                #520240
+            );
+            height: 100vh;
+            width: 100vw;
+        }
+        .container {
+            padding-top: 12%;
+            text-align: center;
+            color: white;
+        }
+        span {
+            margin: auto;
+            font-size: 1.4rem;
+            font-weight: bolder;
+            color: orangered;
+            margin-bottom: 2rem;
+        }
+        .title {
+            color: whitesmoke;
+            font-size: 3.5rem;
+            font-weight: bolder;
+            margin-bottom: 3rem;
+        }
+        .text {
+            width: 50%;
+            margin: auto;
+            line-height: 2rem;
+        }
+        .btn {
+            display: block;
+            margin-left: 100px;
+            width: fit-content;
+            border: 2px solid rgb(255, 69, 0);
+            padding: 14px 50px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bolder;
+            color: rgb(250, 248, 247);
+            transition: background 0.5s;
+        }
+        .btn:hover {
+            background: rgb(255, 69, 0);
+        }
+        .btn1 {
+            margin-left: -4px;
+            padding: 8px 30px;
+            font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+            "Lucida Sans", Arial, sans-serif;
+        }
+        .container2 {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                #ee95fa,
+                #f8d2f8,
+                #fac8f2,
+                #ef9efa
+            );
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .about-col-1 {
+            flex-basis: 35%;
+        }
+
+        .about-col-1 img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .maincont {
+            position: relative;
+            width: 350px;
+            height: 400px;
+            padding: 5px;
+        }
+        .thecard {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+        .thecard:hover {
+            transform: rotateY(180deg);
+        }
+        .fc {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            backface-visibility: hidden;
+            color: white;
+            background: #520240;
+        }
+        .fc img{
+            height: 100%;
+        }
+        .bc {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            color: white;
+            border-radius: 20px;
+            backface-visibility: hidden;
+            background: #27053b;
+            transform: rotateY(180deg);
+        }
+
+        .about-col-2 {
+            text-align: center;
+            margin-top: 4%;
+        }
+
+        .sub {
+            color: #27053b;
+            font-size: 45px;
+            font-weight: 600px;
+        }
+
+        .subcontainer {
+            padding: 8%;
+        }
+        .container3 {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                #4d0a41,
+                #881e76,
+                #881c76,
+                #4b0b41
+            );
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif, monospace;
+        }
+        .file-uploader {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f8f4f7;
+            color: #5c075f;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        #fileInput {
+            display: none;
+        }
+        #fileInput:invalid + label::after {
+            content: "Choose Image";
+            color: #888;
+            padding: 10px;
+            border: 2px dashed #ccc;
+            cursor: pointer;
+        }
+        #fileInput:valid + label::after {
+            content: "";
+            display: block;
+            max-width: 500px;
+            margin: 20px auto;
+            border: 2px solid #ccc;
+            padding: 10px;
+        }
+        #fileInput:valid + label::after img {
+            max-width: 100%;
+            height: auto;
+        }
+        #preview {
+            margin: auto;
+            max-width: 350px;
+        }
+        #preview img {
+            max-width: 100%;
+            height: auto;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .image-cont img{
+            max-width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <div class="container">
+            <span>LOW-LIGHT BOOST</span>
+            <div class="title">Escape the darkness</div>
+            <div class="text">
+                If there are details lost in a poorly lit image, this app will find
+                them. Using our state-of-the-art AI, you can restore light to images
+                that seem too dark to use.
+                <a href="#upload" style="margin:auto;margin-top:3rem" class="btn btn1">Get Started</a>
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <div>
+            <div class="subcontainer">
+                
+                <div class="row">
+                    
+                    <div
+                        class="about-col-2"
+                        data-aos="fade-left"
+                        data-aos-offset="300"
+                        data-aos-easing="ease-in-sine"
+                    >
+                        <h1 class="sub">Let there be light</h1>
+                        <br />
+                        <p style="line-height: 2rem; color: #520240">
+                            Taking photos in low-light environments presents its own
+                            problems, with images appearing dark, indistinct, and grainy.
+                            This app is the solution. Upload a photo that was taken in a
+                            poorly lit environment, our app convert it into a balanced,
+                            naturally lit image that restores its viability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container3" id="upload">
+        <div class="container" style="padding: 10%;">
+            <div class="title" style="font-size:2rem">Upload Low-Light Image</div>
+            <form method="POST" id="uploadForm" enctype="multipart/form-data">
+                <label for="fileInput" class="file-uploader">Choose Image</label>
+                <input type="file" class="file-uploader" id="fileInput" name="file" accept=".png, .jpg, .jpeg" value="choose image"><br><br>
+                <div id="preview"></div>
+                <br>
+                <input type="submit" class="btn" style="background:transparent;margin:auto; font-size: 16px; font-weight: 600;" value="Upload">
+            </form>
+            <br><br>
+            <div id="result" class="image-cont"></div>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const previewDiv = document.getElementById('preview');
+
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const img = document.createElement('img');
+                    img.src = reader.result;
+                    previewDiv.innerHTML = '';
+                    previewDiv.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            } else {
+                previewDiv.innerHTML = '';
+            }
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var form = event.target;
+            var formData = new FormData(form);
+
+            fetch('/enhance', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    var resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = '';
+
+                    // Enhanced Image
+                    var enhancedDiv = document.createElement('div');
+                   
+                    var enhancedImage = document.createElement('img');
+                    enhancedImage.src = 'data:image/png;base64,' + data.enhanced_image;
+                    
+                    enhancedDiv.appendChild(enhancedImage);
+                    var enhancedLabel = document.createElement('div');
+                    enhancedLabel.classList.add('image-label');
+                    enhancedLabel.textContent = 'Enhanced Image';
+                    enhancedDiv.appendChild(enhancedLabel);
+                    resultDiv.appendChild(enhancedDiv);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
